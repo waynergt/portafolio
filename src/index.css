@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Transición global para cambios de tema */
+.theme-transition {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Opcional: mejorar el foco accesible */
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+
+/* Smooth scroll global */
+html {
+  scroll-behavior: smooth;
+  /* fallback header height */
+  --header-height: 64px;
+  /* hace que los anclas respeten el header */
+  scroll-padding-top: var(--header-height);
+}
+
+/* Aseguramos que el contenedor de snap ocupe toda la altura disponible */
+body, #root {
+  height: 100%;
+}
+
+/* transición suave de colores y bordes al cambiar tema */
+.theme-transition {
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
