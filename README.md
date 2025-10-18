@@ -90,7 +90,7 @@ Buenas prácticas y recomendaciones
 - Prueba cambios en local con `npm run build` y `npm run preview` antes de pushear.
 - Añade tests básicos y linting para mantener calidad del código.
 
-Estructura del proyecto (ejemplo)
+Estructura del proyecto
 ---
 - /public — assets públicos (imágenes, favicon, CV)
 - /src
@@ -102,29 +102,3 @@ Estructura del proyecto (ejemplo)
 - vite.config.ts — configuración de Vite
 - tailwind.config.js — configuración de Tailwind
 
-Accesibilidad
----
-- La UI usa roles y aria-labels en botones y secciones importantes.
-- Los componentes son navegables con Tab y los tooltips se exponen con sr-only para lectores de pantalla.
-- Comprueba contraste en modo claro/oscuro y ajusta colores si fuera necesario.
-
-Cómo puedo ayudarte con el despliegue (opciones)
----
-He preparado las instrucciones generales y la configuración típica para Vercel. Puedo:
-- Generar para ti el README completo en el repositorio (crear PR) si me das acceso al repo o autorizas que cree un branch y PR.
-- Revisar los logs de despliegue de Vercel si me pegas el error o el log.
-- Añadir un archivo `vercel.json` sugerido con ajustes (builds, redirects, headers) — lo genero si quieres.
-- Sugerir una configuración de GitHub Actions alternativa si prefieres CI diferente a Vercel.
-
-Contacto
----
-Para soporte o cambios directos al README/CI puedo continuar y preparar un PR con los archivos listos. Si quieres que lo haga ahora, dime el repo (owner/repo) o concede acceso a Vercel/GitHub y preparo el PR.
-
----
-
-He creado este README con:
-- Resumen del proyecto y demo (tu URL de Vercel incluida).
-- Instrucciones claras para dev local, build y despliegue en Vercel.
-- Consejos y pasos siguientes para integración continua y optimizaciones.
-
-Siguiente paso: si quieres, lo subo como `README.md` a la rama `main`/`dev` de tu repo y abro un PR con ese README y/o un `vercel.json`. ¿Lo hago por ti (indícame repo) o prefieres que te dé el archivo listo para pegar?
