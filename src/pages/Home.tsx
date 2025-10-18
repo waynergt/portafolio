@@ -1,9 +1,9 @@
 import React from "react";
 import Hero from "../components/Hero";
 import Technologies from "../components/Technologies";
-import Experience from "../components/Experience";
+
 import Tasks from "../components/Tasks";
-import Education from "../components/Education";
+
 import Contact from "../components/Contact";
 
 const Home: React.FC = () => {
