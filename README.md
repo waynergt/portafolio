@@ -1,73 +1,130 @@
-# React + TypeScript + Vite
+# Portafolio — Wayner López (WaynerGT)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Ver sitio en producción](https://portafolio-cv-waynergts-projects.vercel.app/)
 
-Currently, two official plugins are available:
+Descripción
+---
+Este repositorio contiene el portafolio personal de Wayner López (WaynerGT). Es una web estática moderna, responsive y accesible, construida con tecnologías web actuales (React + Vite + TypeScript + Tailwind CSS) para mostrar el hero, proyectos, tecnologías, el contacto y demás secciones de presentación profesional.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Características principales
+---
+- Hero con retrato, nombre destacado y CTAs.
+- Sección de Proyectos con tarjetas, paginación y animaciones ligeras.
+- Sección de Tecnologías con tarjetas y barras de progreso.
+- Sección de Contacto con enlaces mailto, WhatsApp y redes sociales.
+- Diseño "glass" limpio, compatible light/dark.
+- Optimización de imágenes y soporte retina (srcSet).
+- Despliegue continuo en Vercel.
 
-## React Compiler
+Demo
+---
+Accede a la versión desplegada: https://portafolio-cv-waynergts-projects.vercel.app/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tecnologías
+---
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- react-icons
+- (Opcionales) herramientas de optimización de imágenes: Squoosh, ImageOptim
 
-## Expanding the ESLint configuration
+Requisitos previos
+---
+- Node.js (>= 18 recomendado)
+- npm o Yarn
+- Cuenta en GitHub (para conectar con Vercel si quieres despliegue automático)
+- Cuenta en Vercel (opcional, para hosting gratuito y CI/CD)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Instalación y desarrollo local
+---
+1. Clona el repositorio:
+   git clone <TU_REPO_URL>
+2. Entra al proyecto:
+   cd <tu-repo>
+3. Instala dependencias:
+   npm install
+   (o) yarn
+4. Levanta el servidor de desarrollo:
+   npm run dev
+   (o) yarn dev
+5. Abre en el navegador: normalmente http://localhost:5173 (Vite mostrará el puerto exacto)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Scripts útiles
+---
+- npm run dev — servidor de desarrollo
+- npm run build — compilar para producción (genera la carpeta `dist`)
+- npm run preview — probar el build localmente
+- npm run lint / test — (si están configurados en el repo)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Producción / Build
+---
+- Para generar los archivos listos para producción:
+  npm run build
+- Los archivos finales se encuentran en `dist/` (Vite).
+- Puedes servirlos localmente con `npm run preview` o subir `dist/` a cualquier host estático.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Despliegue en Vercel (pasos rápidos)
+---
+1. Entra a https://vercel.com y conéctate con tu cuenta GitHub (autoriza el acceso al repositorio).
+2. Crea un nuevo proyecto y selecciona el repositorio de tu portafolio.
+3. Vercel detecta Vite automáticamente en la mayoría de los casos. Configura:
+   - Framework: Vite (si no se detecta automáticamente)
+   - Comando de build: npm run build
+   - Output directory: dist
+   - Install command: npm install
+4. Opcional: configura variables de entorno (por ejemplo, si usas servicios externos).
+5. Haz Deploy — Vercel hará build y publicará en una URL `*.vercel.app`. Puedes añadir dominio personalizado en "Domains".
+6. Cada push a la rama configurada (ej. main) iniciará un nuevo despliegue automático.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Configuración adicional para Vercel
+---
+- Si tienes imágenes en `/public`, Vercel las servirá tal cual. Para optimización adicional considera usar la integración Image Optimization de Vercel o generar versiones webp.
+- Si el build falla en Vercel, revisa los logs en la interfaz de Vercel: errores de dependencias o de variables suelen ser la causa (asegúrate de usar Node.js >= versión requerida).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Buenas prácticas y recomendaciones
+---
+- Mantén las imágenes optimizadas y con versiones @2x para retina.
+- Evita incrustar datos sensibles en el frontend. Usa variables de entorno para claves (Vercel: Dashboard → Project → Environment Variables).
+- Prueba cambios en local con `npm run build` y `npm run preview` antes de pushear.
+- Añade tests básicos y linting para mantener calidad del código.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Estructura del proyecto (ejemplo)
+---
+- /public — assets públicos (imágenes, favicon, CV)
+- /src
+  - /components — componentes React (Hero, Contact, Tasks, Technologies, Header...)
+  - /pages — si tienes rutas separadas
+  - main.tsx — punto de entrada
+  - index.css — Tailwind + estilos globales
+- package.json — scripts y dependencias
+- vite.config.ts — configuración de Vite
+- tailwind.config.js — configuración de Tailwind
+
+Accesibilidad
+---
+- La UI usa roles y aria-labels en botones y secciones importantes.
+- Los componentes son navegables con Tab y los tooltips se exponen con sr-only para lectores de pantalla.
+- Comprueba contraste en modo claro/oscuro y ajusta colores si fuera necesario.
+
+Cómo puedo ayudarte con el despliegue (opciones)
+---
+He preparado las instrucciones generales y la configuración típica para Vercel. Puedo:
+- Generar para ti el README completo en el repositorio (crear PR) si me das acceso al repo o autorizas que cree un branch y PR.
+- Revisar los logs de despliegue de Vercel si me pegas el error o el log.
+- Añadir un archivo `vercel.json` sugerido con ajustes (builds, redirects, headers) — lo genero si quieres.
+- Sugerir una configuración de GitHub Actions alternativa si prefieres CI diferente a Vercel.
+
+Contacto
+---
+Para soporte o cambios directos al README/CI puedo continuar y preparar un PR con los archivos listos. Si quieres que lo haga ahora, dime el repo (owner/repo) o concede acceso a Vercel/GitHub y preparo el PR.
+
+---
+
+He creado este README con:
+- Resumen del proyecto y demo (tu URL de Vercel incluida).
+- Instrucciones claras para dev local, build y despliegue en Vercel.
+- Consejos y pasos siguientes para integración continua y optimizaciones.
+
+Siguiente paso: si quieres, lo subo como `README.md` a la rama `main`/`dev` de tu repo y abro un PR con ese README y/o un `vercel.json`. ¿Lo hago por ti (indícame repo) o prefieres que te dé el archivo listo para pegar?
