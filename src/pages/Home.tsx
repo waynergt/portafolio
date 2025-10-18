@@ -20,17 +20,17 @@ const Home: React.FC = () => {
         <Technologies />
       </section>
 
-      <section id="experience" className={`${sectionBase}`}>
+      {/* <section id="experience" className={`${sectionBase}`}>
         <Experience />
-      </section>
+      </section> */}
 
       <section id="tasks" className={`${sectionBase}`}>
         <Tasks />
       </section>
 
-      <section id="education" className={`${sectionBase}`}>
+      {/*<section id="education" className={`${sectionBase}`}>
         <Education />
-      </section>
+      </section>*/}
 
       <section id="contact" className={`${sectionBase}`}>
         <Contact />

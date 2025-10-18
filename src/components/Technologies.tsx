@@ -151,7 +151,8 @@ const TechCard: React.FC<{ tech: Tech }> = ({ tech }) => {
       aria-describedby={`tech-desc-${tech.id}`}
       className="relative"
     >
-      <div className="bg-white/6 dark:bg-gray-900/30 backdrop-blur-sm border border-white/8 dark:border-gray-700/25 rounded-lg p-3 flex items-center gap-4 transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-lg focus-within:outline-none">
+      {/* Card limpio: sin borde visible, con backdrop-blur y sombra sutil en hover */}
+      <div className="bg-white/6 dark:bg-gray-900/30 backdrop-blur-sm rounded-lg p-3 flex items-center gap-4 transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-lg focus-within:outline-none">
         <TechIcon tech={tech} />
 
         <div className="flex-1 min-w-0">
@@ -171,9 +172,14 @@ const TechCard: React.FC<{ tech: Tech }> = ({ tech }) => {
           <div className="mt-3 flex items-center gap-3">
             <div className="flex-1">
               <div className="h-2 rounded-full bg-gray-200/30 dark:bg-gray-700/30 overflow-hidden">
+                {/* Fill now uses the hero's yellow/golden gradient */}
                 <div
-                  className="h-2 bg-gradient-to-r from-blue-400 to-cyan-500"
-                  style={{ width: `${tech.proficiency ?? 0}%`, transition: "width 0.6s ease" }}
+                  className="h-2"
+                  style={{
+                    width: `${tech.proficiency ?? 0}%`,
+                    transition: "width 0.6s ease",
+                    background: "linear-gradient(90deg, #FBBF24 0%, #FFD54F 40%, #F59E0B 100%)",
+                  }}
                 />
               </div>
             </div>
@@ -233,7 +239,8 @@ const Technologies: React.FC = () => {
   return (
     <section id="technologies" aria-labelledby="technologies-title" className="px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <div className="bg-white/5 dark:bg-gray-900/35 backdrop-blur-sm border border-white/10 dark:border-gray-700/30 rounded-lg p-6 theme-transition">
+        {/* Contenedor limpio sin borde evidente, solo backdrop-blur para separación */}
+        <div className="bg-white/5 dark:bg-gray-900/35 backdrop-blur-sm rounded-lg p-6 theme-transition">
           <div className="flex items-start justify-between gap-4">
             <div>
               <h2 id="technologies-title" className="text-2xl font-semibold text-gray-900 dark:text-gray-100">

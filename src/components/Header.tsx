@@ -5,9 +5,9 @@ import { useTheme } from "../context/themeUtils";
 const navItems = [
   { id: "home", label: "Inicio", path: "/" },
   { id: "technologies", label: "Tecnologías", path: "/technologies" },
-  { id: "experience", label: "Experiencia", path: "/experience" },
+  /*{ id: "experience", label: "Experiencia", path: "/experience" },*/
   { id: "tasks", label: "Tareas", path: "/tasks" },
-  { id: "education", label: "Formación", path: "/education" },
+  /*{ id: "education", label: "Formación", path: "/education" },*/
   { id: "contact", label: "Contáctame", path: "/contact" },
 ];
 
@@ -36,13 +36,11 @@ const CloseIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
 );
 
 const Header: React.FC = () => {
-  // Desestructuramos solo lo que usamos para evitar warnings de ESLint/TS
   const { toggle, isDark } = useTheme();
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // bloquear scroll del body cuando el menú móvil está abierto
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -54,13 +52,11 @@ const Header: React.FC = () => {
     };
   }, [open]);
 
-  // cerrar menú al navegar
   const onNavigate = (path: string) => {
     setOpen(false);
     navigate(path);
   };
 
-  // close on click outside (for desktop small popover safety)
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
       if (!open) return;
@@ -74,7 +70,8 @@ const Header: React.FC = () => {
 
   return (
     <header className="fixed inset-x-0 top-0 z-40">
-      <div className="backdrop-blur-sm bg-white/60 dark:bg-gray-900/60 border-b border-gray-200 dark:border-gray-800">
+      {/* Header without background color (transparent), keeping backdrop blur */}
+      <div className="backdrop-blur-sm bg-transparent border-b border-transparent">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo / Brand */}
@@ -84,11 +81,11 @@ const Header: React.FC = () => {
                 aria-label="Ir a inicio"
                 className="flex items-center gap-2"
               >
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-indigo-500 flex items-center justify-center text-white font-bold shadow-md">
-                  WR
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#052235] to-[#0b3b4a] flex items-center justify-center text-white font-bold shadow-md">
+                  WL
                 </div>
                 <span className="hidden md:inline-block text-lg font-semibold text-gray-900 dark:text-gray-100">
-                  Wayne RGT
+                  Wayner López
                 </span>
               </button>
             </div>
@@ -111,10 +108,9 @@ const Header: React.FC = () => {
                   {({ isActive }) => (
                     <>
                       <span>{n.label}</span>
-                      {/* underline animated */}
                       <span
                         aria-hidden
-                        className={`absolute left-0 -bottom-1 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-200 ${
+                        className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-yellow-400 to-yellow-300 transition-all duration-200 ${
                           isActive ? "w-full" : "w-0 group-hover:w-full"
                         }`}
                       />
@@ -124,7 +120,7 @@ const Header: React.FC = () => {
               ))}
             </nav>
 
-            {/* actions: theme toggle + CTA + mobile menu button */}
+            {/* actions: theme toggle + mobile menu button (contact removed) */}
             <div className="flex items-center gap-3">
               <div className="hidden sm:flex items-center gap-2">
                 <button
@@ -134,16 +130,8 @@ const Header: React.FC = () => {
                 >
                   {isDark ? <MoonIcon /> : <SunIcon />}
                 </button>
-
-                <button
-                  onClick={() => onNavigate("/contact")}
-                  className="px-3 py-1.5 rounded-md bg-blue-600 hover:bg-blue-700 text-white text-sm shadow-sm transition"
-                >
-                  Contáctame
-                </button>
               </div>
 
-              {/* mobile menu button */}
               <div className="lg:hidden">
                 <button
                   onClick={() => setOpen((s) => !s)}
@@ -179,7 +167,7 @@ const Header: React.FC = () => {
 
         {/* panel */}
         <div
-          className={`relative max-w-md w-full h-full bg-white dark:bg-gray-900 shadow-xl border-l dark:border-l-gray-800 transition-transform duration-300 ${
+          className={`relative max-w-md w-full h-full bg-white/60 dark:bg-[#071e26]/95 shadow-xl border-l dark:border-l-gray-800 transition-transform duration-300 ${
             open ? "translate-x-0" : "translate-x-full"
           }`}
           style={{ marginLeft: "auto" }}
@@ -187,10 +175,10 @@ const Header: React.FC = () => {
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-indigo-500 flex items-center justify-center text-white font-bold">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#052235] to-[#0b3b4a] flex items-center justify-center text-white font-bold">
                   WR
                 </div>
-                <span className="text-lg font-medium text-gray-900 dark:text-gray-100">Wayne RGT</span>
+                <span className="text-lg font-medium text-gray-900 dark:text-gray-100">Wayner López</span>
               </div>
               <button
                 onClick={() => setOpen(false)}
@@ -224,16 +212,10 @@ const Header: React.FC = () => {
                 >
                   {isDark ? <MoonIcon /> : <SunIcon />}
                 </button>
-                <button
-                  onClick={() => onNavigate("/contact")}
-                  className="flex-1 px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white transition"
-                >
-                  Contáctame
-                </button>
               </div>
 
               <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                © {new Date().getFullYear()} Wayne RGT
+                © {new Date().getFullYear()} Wayner López
               </div>
             </div>
           </div>
